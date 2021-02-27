@@ -60,6 +60,8 @@ class MovieLibrary extends Component {
       if (
         state.title
         !== previousState.movies[previousState.movies.length - 1].title
+        && state.imagePath
+        !== previousState.movies[previousState.movies.length - 1].imagePath
       ) {
         return { movies: [...previousState.movies, state] };
       }
@@ -71,7 +73,7 @@ class MovieLibrary extends Component {
     const { searchText, selectedGenre, bookmarkedOnly } = this.state;
 
     return (
-      <div onChange={ this.filterMovies }>
+      <div onChange={ this.filterMovies } className='page'>
         <h2> My awesome movie library </h2>
         <SearchBar
           searchText={ searchText }

@@ -50,6 +50,7 @@ class AddMovie extends Component {
     return (
       <label htmlFor="title-input" data-testid="title-input-label">
         Título
+        <br/>
         <input
           name="title"
           type="text"
@@ -67,6 +68,7 @@ class AddMovie extends Component {
     return (
       <label htmlFor="subtitle-input" data-testid="subtitle-input-label">
         Subtítulo
+        <br/>
         <input
           name="subtitle"
           value={ subtitle }
@@ -80,11 +82,14 @@ class AddMovie extends Component {
   }
 
   imageElement() {
+    const { imagePath } = this.state
     return (
       <label htmlFor="image-input" data-testid="image-input-label">
         Imagem
+        <br/>
         <input
           name="imagePath"
+          value={ imagePath }
           type="text"
           data-testid="image-input"
           onChange={ this.updateState }
@@ -98,6 +103,7 @@ class AddMovie extends Component {
     return (
       <label htmlFor="storyline-input" data-testid="storyline-input-label">
         Sinopse
+        <br/>
         <textarea
           name="storyline"
           id="storyline-input"
@@ -116,6 +122,7 @@ class AddMovie extends Component {
     return (
       <label htmlFor="rating-input" data-testid="rating-input-label">
         Avaliação
+        <br/>
         <input
           type="number"
           name="rating"
@@ -123,6 +130,9 @@ class AddMovie extends Component {
           data-testid="rating-input"
           onChange={ this.updateState }
           value={ rating }
+          max='5'
+          min='0'
+          step='0.1'
         />
       </label>
     );
@@ -134,6 +144,7 @@ class AddMovie extends Component {
     return (
       <label htmlFor="genre-input" data-testid="genre-input-label">
         Gênero
+        <br/>
         <select
           name="genre"
           id="genre-input"
@@ -157,7 +168,7 @@ class AddMovie extends Component {
 
   render() {
     return (
-      <form action="" data-testid="add-movie-form">
+      <form action="" data-testid="add-movie-form" className='add-movie-form'>
         { this.titleElement() }
         { this.subtitleElement() }
         { this.imageElement() }
@@ -165,6 +176,7 @@ class AddMovie extends Component {
         { this.ratingElement() }
         { this.genreElement() }
         <button
+        className='add-button'
           data-testid="send-button"
           type="button"
           onClick={ () => {
