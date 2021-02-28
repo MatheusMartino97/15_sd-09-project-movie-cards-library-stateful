@@ -24,6 +24,7 @@ body {
   display: flex;
   flex-flow: row wrap;
   padding: 48px 30px;
+  justify-content: space-around;
 }
 
 .movie-card {
@@ -92,6 +93,11 @@ body {
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-end;
+  align-items: center;
+}
+
+.checkbox-input-label input[type='checkbox'] {
+  margin-right: 10px;
 }
 
 img {
@@ -114,4 +120,13 @@ form , h2 {
 
 .add-button {
   align-self: flex-start;
+}
+
+input[type='text'], input[type='number'], textarea, select {
+  width: 100%;
+}
+
+.verified-message {
+  margin-left: 10px;
+  visibility: hidden;
 }

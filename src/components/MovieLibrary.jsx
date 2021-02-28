@@ -14,6 +14,7 @@ class MovieLibrary extends Component {
     this.updateState = this.updateState.bind(this);
     this.filterMovies = this.filterMovies.bind(this);
     this.addMovieCard = this.addMovieCard.bind(this);
+    this.validateFields = this.validateFields.bind(this);
 
     this.state = {
       searchText: '',
@@ -55,12 +56,41 @@ class MovieLibrary extends Component {
     return filteredMovies;
   }
 
+  validateFields() {
+    const addMovieInputs = document.querySelectorAll('.add-movie-form input, .add-movie-form textarea')
+    const values = []
+
+    addMovieInputs.forEach((input) => {
+      if (input.type !== 'number') {
+        if (input.value) {
+          values.push(input.value)
+        } else {
+          values.push(false)
+        }
+      }
+    })
+
+    return values.includes(false) ? false : true
+  }
+
   addMovieCard(state) {
     this.setState((previousState) => {
+      const verifiedMessageSpan = document.querySelector('.verified-message')
+
+      if (this.validateFields() === false) {
+        
+        
+        verifiedMessageSpan.style.visibility = 'visible'
+
+        return
+      }
+
+      verifiedMessageSpan.style.visibility = 'hidden'
+
       if (
         state.title
         !== previousState.movies[previousState.movies.length - 1].title
-        && state.imagePath
+        || state.imagePath
         !== previousState.movies[previousState.movies.length - 1].imagePath
       ) {
         return { movies: [...previousState.movies, state] };
@@ -74,7 +104,7 @@ class MovieLibrary extends Component {
 
     return (
       <div onChange={ this.filterMovies } className='page'>
-        <h2> My awesome movie library </h2>
+        <h2> Movie library </h2>
         <SearchBar
           searchText={ searchText }
           selectedGenre={ selectedGenre }

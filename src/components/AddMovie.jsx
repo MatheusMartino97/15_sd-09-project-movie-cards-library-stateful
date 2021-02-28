@@ -30,7 +30,28 @@ class AddMovie extends Component {
     this.setState({ [name]: value });
   }
 
+  validateFields() {
+    const addMovieInputs = document.querySelectorAll('.add-movie-form input, .add-movie-form textarea')
+    const values = []
+
+    addMovieInputs.forEach((input) => {
+      if (input.type !== 'number') {
+        if (input.value) {
+          values.push(input.value)
+        } else {
+          values.push(false)
+        }
+      }
+    })
+
+    return values.includes(false) ? false : true
+  }
+
   resetState() {
+    if (this.validateFields() === false) {
+      return
+    }
+
     const { onClick } = this.props;
     onClick(this.state);
 
@@ -108,8 +129,6 @@ class AddMovie extends Component {
           name="storyline"
           id="storyline-input"
           data-testid="storyline-input"
-          cols="30"
-          rows="10"
           onChange={ this.updateState }
           value={ storyline }
         />
@@ -175,6 +194,7 @@ class AddMovie extends Component {
         { this.storylineElement() }
         { this.ratingElement() }
         { this.genreElement() }
+        <div>
         <button
         className='add-button'
           data-testid="send-button"
@@ -188,6 +208,9 @@ class AddMovie extends Component {
         >
           Adicionar filme
         </button>
+        <span className='verified-message'><em>Invalid movie</em></span>
+        </div>
+
       </form>
     );
   }
