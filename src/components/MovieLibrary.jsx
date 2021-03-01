@@ -79,7 +79,6 @@ class MovieLibrary extends Component {
 
       if (this.validateFields() === false) {
         
-        
         verifiedMessageSpan.style.visibility = 'visible'
 
         return
