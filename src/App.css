@@ -95,10 +95,12 @@ body {
   flex-direction: row-reverse;
   justify-content: flex-end;
   align-items: center;
+  cursor: pointer;
 }
 
 .checkbox-input-label input[type='checkbox'] {
   margin-right: 10px;
+  cursor: pointer;
 }
 
 img {
@@ -147,4 +149,5 @@ input[type='text'], input[type='number'], textarea, select {
 .favorite-star-icon {
   width: 25px;
   transition: 1s;
+  cursor: pointer;
 }
